@@ -21,9 +21,13 @@
   "keywords": [
     "download",
     "bulk download",
+    "download multiple files",
+    "download folder",
     "remote",
     "ssh",
+    "sftp",
     "wsl",
+    "dev container",
     "explorer"
   ],
   "extensionKind": [
