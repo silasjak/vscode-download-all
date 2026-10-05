@@ -1,0 +1,101 @@
+{
+  "name": "download-all",
+  "displayName": "Download All",
+  "description": "Download all selected files and folders from a remote workspace with a single destination prompt.",
+  "version": "0.0.1",
+  "publisher": "silasjak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/silasjak/vscode-download-all.git"
+  },
+  "bugs": {
+    "url": "https://github.com/silasjak/vscode-download-all/issues"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "download",
+    "bulk download",
+    "remote",
+    "ssh",
+    "wsl",
+    "explorer"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "downloadAll.download",
+        "title": "Download All…"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "downloadAll.download",
+          "when": "!isWeb && resourceScheme != file && listMultiSelection",
+          "group": "5b_importexport@11"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "downloadAll.download",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Download All",
+      "properties": {
+        "downloadAll.onConflict": {
+          "type": "string",
+          "enum": [
+            "prompt",
+            "overwrite",
+            "skip",
+            "rename"
+          ],
+          "enumDescriptions": [
+            "Ask what to do for every name that already exists in the destination.",
+            "Replace existing files and folders without asking.",
+            "Leave existing files and folders untouched and skip those items.",
+            "Keep both by appending a counter, e.g. `report (2).pdf`."
+          ],
+          "default": "prompt",
+          "description": "What to do when an item already exists in the chosen destination."
+        },
+        "downloadAll.defaultDestination": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Local folder the destination dialog opens in, e.g. `~/Downloads`. The folder used for the previous download takes precedence; leave empty to fall back to your local Downloads folder."
+        },
+        "downloadAll.concurrency": {
+          "type": "number",
+          "default": 4,
+          "minimum": 1,
+          "maximum": 16,
+          "description": "How many items to transfer in parallel. Lower this on slow or unstable connections."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.4.0"
+  }
+}
