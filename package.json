@@ -29,6 +29,7 @@
   "extensionKind": [
     "ui"
   ],
+  "icon": "media/icon.png",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
