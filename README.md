@@ -4,6 +4,8 @@
 
 Download every selected file and folder from a remote VS Code workspace with **one** destination prompt instead of one dialog per item.
 
+![Left: the built-in Download asks once per file. Right: Download All asks once for the whole selection.](media/demo.gif)
+
 ## Install
 
 Search for **Download All** in the Extensions view, or from a terminal:

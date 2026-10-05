@@ -1,5 +1,6 @@
 .vscode/**
 .github/**
+media/demo.gif
 src/**
 **/*.ts
 **/*.map
