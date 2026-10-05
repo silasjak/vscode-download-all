@@ -106,14 +106,16 @@ async function pickDestination(context: vscode.ExtensionContext, count: number):
 async function defaultDestination(context: vscode.ExtensionContext): Promise<vscode.Uri | undefined> {
 	const candidates: string[] = [];
 
-	const lastUsed = context.globalState.get<string>(LAST_DESTINATION_KEY);
-	if (lastUsed) {
-		candidates.push(lastUsed);
-	}
-
+	// An explicitly configured folder beats the one remembered from last time,
+	// otherwise the setting would never take effect once anything was downloaded.
 	const configured = config().get<string>('defaultDestination', '').trim();
 	if (configured) {
 		candidates.push(expandHome(configured, context));
+	}
+
+	const lastUsed = context.globalState.get<string>(LAST_DESTINATION_KEY);
+	if (lastUsed) {
+		candidates.push(lastUsed);
 	}
 
 	if (runsLocally(context)) {

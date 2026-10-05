@@ -27,7 +27,7 @@ Select several files or folders in the Explorer → right-click → **Download A
 | Setting | Default | Description |
 | --- | --- | --- |
 | `downloadAll.onConflict` | `prompt` | What to do when a name already exists in the destination: `prompt`, `overwrite`, `skip` or `rename`. |
-| `downloadAll.defaultDestination` | `""` | Local folder the dialog opens in, e.g. `~/Downloads`. The previous download's folder wins over this. |
+| `downloadAll.defaultDestination` | `""` | Local folder the dialog opens in, e.g. `~/Downloads`. Wins over the folder used for the previous download. |
 | `downloadAll.concurrency` | `4` | Parallel transfers. Lower it on slow or unstable connections. |
 
 ## Development

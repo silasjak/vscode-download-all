@@ -76,7 +76,7 @@
         "downloadAll.defaultDestination": {
           "type": "string",
           "default": "",
-          "markdownDescription": "Local folder the destination dialog opens in, e.g. `~/Downloads`. The folder used for the previous download takes precedence; leave empty to fall back to your local Downloads folder."
+          "markdownDescription": "Local folder the destination dialog opens in, e.g. `~/Downloads`. Takes precedence over the folder used for the previous download; leave empty to reopen wherever you downloaded last."
         },
         "downloadAll.concurrency": {
           "type": "number",
