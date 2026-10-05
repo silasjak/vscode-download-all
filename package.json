@@ -2,7 +2,7 @@
   "name": "download-all",
   "displayName": "Download All",
   "description": "Download all selected files and folders from a remote workspace with a single destination prompt.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "silasjak",
   "license": "MIT",
   "repository": {
@@ -97,6 +97,7 @@
   "devDependencies": {
     "@types/node": "20.x",
     "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^3.9.2",
     "typescript": "^5.4.0"
   }
 }

@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check tag against package.json
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $version"
+            exit 1
+          fi
+          echo "VSIX=download-all-$version.vsix" >> "$GITHUB_ENV"
+
+      - run: npx vsce package
+
+      # Publish before touching the release: a failed upload should not leave a
+      # GitHub release pointing at a version the Marketplace never got.
+      - name: Publish to the Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx vsce publish --packagePath "$VSIX"
+
+      - name: Attach the VSIX to a GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "$VSIX" --generate-notes \
+            || gh release upload "$GITHUB_REF_NAME" "$VSIX" --clobber
