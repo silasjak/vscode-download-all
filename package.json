@@ -2,7 +2,7 @@
   "name": "download-all",
   "displayName": "Download All",
   "description": "Download all selected files and folders from a remote workspace with a single destination prompt.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "silasjak",
   "license": "MIT",
   "repository": {
