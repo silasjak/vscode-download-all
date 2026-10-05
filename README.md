@@ -1,6 +1,16 @@
 # Download All
 
+[![CI](https://github.com/silasjak/vscode-download-all/actions/workflows/ci.yml/badge.svg)](https://github.com/silasjak/vscode-download-all/actions/workflows/ci.yml)
+
 Download every selected file and folder from a remote VS Code workspace with **one** destination prompt instead of one dialog per item.
+
+## Install
+
+Search for **Download All** in the Extensions view, or from a terminal:
+
+```bash
+code --install-extension silasjak.download-all
+```
 
 ## The problem
 
